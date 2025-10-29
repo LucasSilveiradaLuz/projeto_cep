@@ -13,12 +13,22 @@
     <div class = "funcionalidades"></div>
      <input id="cep" type="text" />
       <button onclick="buscaCep()"  id="pesquisar">Pesquisar</button>
-      <div class = "conteudo"> 
+      <!-- <div class = "conteudo"> 
       <p id = "rua"></p>
       <p id = "bairro"></p>
       <p id = "cidade"></p>
       <p id = "estado"></p>
-      </div>
+      </div> -->
+        <div class = "conteudo">
+                <label for="rua">Rua:</label>
+                <input id="rua" type="text" readonly/>
+                <label for="bairro">Bairro:</label>
+                <input id="bairro" type="text" readonly/>
+                <label for="cidade">Cidade:</label>
+                <input id="cidade" type="text" readonly/>
+                <label for="estado">Estado:</label>
+                <input id="estado" type="text" readonly/>
+            </div>
       </main>
 </body>
 <script src="atividade.js"></script>

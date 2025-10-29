@@ -37,10 +37,14 @@ function buscaCep () {
    fetch(url)
     .then((response) => response.json())
     .then((cep) => { 
-     rua.innerHTML = cep.logradouro
-     bairro.innerHTML = cep.bairro
-     cidade.innerHTML = cep.localidade
-     estado.innerHTML = cep.uf
+    //  rua.innerHTML = cep.logradouro
+    //  bairro.innerHTML = cep.bairro
+    //  cidade.innerHTML = cep.localidade
+    //  estado.innerHTML = cep.uf
+      rua.value = cep.logradouro
+      bairro.value = cep.bairro
+      cidade.value = cep.localidade
+      estado.value = cep.estado
     })
     .catch((error) => {
         console.log("Ocorreu um erro" + error)
