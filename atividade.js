@@ -20,30 +20,41 @@
 //Link do VaiCEP: https://viacep.com.br/ e um exemplo de consulta: https://viacep.com.br/ws/90010001/json/
 
 //Entrega em um repositório no github, com os arquivos e readme organizados.
-
-function buscaCep () {
-  let cep = document.getElementById("cep").value
-  let url = `https://viacep.com.br/ws/${cep}/json/`
+function buscaCep() {
+  let cep = document.getElementById("cep").value;
+  let url = `https://viacep.com.br/ws/${cep}/json/`;
   let rua = document.getElementById("rua");
   let bairro = document.getElementById("bairro");
   let cidade = document.getElementById("cidade");
   let estado = document.getElementById("estado");
+  let resposta = document.getElementById("resposta");
 
-  rua.innerHTML = "";
-  bairro.innerHTML = "";
-  cidade.innerHTML = "";
-  estado.innerHTML = "";
+  rua.value = "";
+  bairro.value = "";
+  cidade.value = "";
+  estado.value = "";
+  resposta.innerHTML = "";
 
-   fetch(url)
-    .then((response) => response.json())
-    .then((cep) => { 
-   
-      rua.value = cep.logradouro
-      bairro.value = cep.bairro
-      cidade.value = cep.localidade
-      estado.value = cep.estado
+
+
+  if (!cep || cep.length < 6 || /\D/.test(cep)) {
+    resposta.innerHTML = "Digite um CEP válido ";
+    return;
+  }
+  fetch(url)
+    .then(response => response.json())
+    .then(dados => {
+      
+      rua.value = dados.logradouro;
+      bairro.value = dados.bairro;
+      cidade.value = dados.localidade;
+      estado.value = dados.uf; 
+      //  Limpa  mensagem de erro
+      resposta.innerHTML = "";
     })
-    .catch((error) => {
-        console.log("Ocorreu um erro" + error)
-    })
+    .catch(error => {
+      console.log("Ocorreu um erro: " + error);
+      // erro de rede 
+      resposta.innerHTML = "Erro ao buscar o CEP. Tente novamente.";
+    });
 }
